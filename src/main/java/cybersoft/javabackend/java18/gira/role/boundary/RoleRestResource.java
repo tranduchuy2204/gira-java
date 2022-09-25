@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/roles")
 public class RoleRestResource {
@@ -32,7 +34,7 @@ public class RoleRestResource {
     }
 
     @PostMapping
-    public Object save(@RequestBody Role role){
-        return ResponseUtils.get(service.save(role), HttpStatus.CREATED);
+    public Object save(@RequestBody @Valid RoleDTO roleDTO){
+        return ResponseUtils.get(service.save(roleDTO), HttpStatus.CREATED);
     }
 }
