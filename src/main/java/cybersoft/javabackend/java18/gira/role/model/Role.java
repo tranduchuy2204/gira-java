@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 @Getter
 @Setter
@@ -17,13 +17,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name = RoleEntity.Role.TABLE_NAME)
 public class Role extends BaseEntity {
-
-    @Column(name = RoleEntity.Role.NAME)
+    @Column(name = RoleEntity.Role.NAME, unique = true)
     private String name;
 
-    @Column(name = RoleEntity.Role.CODE)
+    @Column(name = RoleEntity.Role.CODE, unique = true)
     private String code;
 
     @Column(name = RoleEntity.Role.DESCRIPTION)
     private String description;
+
+    @Override
+    public boolean equals(Object obj) {
+        Role roleObj = (Role) obj;
+        return super.equals(obj)
+                && roleObj.name.equals(name)
+                && roleObj.code.equals(code);
+    }
 }
