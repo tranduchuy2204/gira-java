@@ -35,6 +35,8 @@ public interface GenericService<T extends BaseEntity, D, I> {
                 .collect(Collectors.toList());
     }
 
+
+
     default Optional<T> findById(I id) {
         return getRepository().findById(id);
     }

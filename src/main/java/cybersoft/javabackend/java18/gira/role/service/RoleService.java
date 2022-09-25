@@ -14,7 +14,11 @@ import java.util.UUID;
 
 public interface RoleService extends GenericService<Role, RoleDTO, UUID> {
     Role update(Role role, String code);
+
     void deleteByCode(String code);
+
+    RoleDTO save(RoleDTO dto);
+
 }
 
 @Service
@@ -23,14 +27,13 @@ class RoleServiceImpl implements RoleService {
     private final RoleRepository repository;
     private final GiraMapper mapper;
 
-    // Reflection
     static {
         System.out.println("Hello JVM");
         System.out.println("Thank you Application Class Loader");
         System.out.println("Have a nice day!");
     }
 
-    public RoleServiceImpl(RoleRepository repository, GiraMapper mapper){
+    public RoleServiceImpl(RoleRepository repository, GiraMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -46,6 +49,13 @@ class RoleServiceImpl implements RoleService {
     @Override
     public void deleteByCode(String code) {
         repository.deleteByCode(code);
+    }
+
+    @Override
+    public RoleDTO save(RoleDTO dto) {
+        Role model = mapper.map(dto, Role.class);
+        Role savedModel = repository.save(model);
+        return mapper.map(savedModel, RoleDTO.class);
     }
 
     @Override
