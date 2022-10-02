@@ -10,7 +10,7 @@ public class DateTimeUtils {
     public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm:ss";
 
     public static final DateTimeFormatter DATETIME_FORMATTER =
-            DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+        DateTimeFormatter.ofPattern(DATETIME_FORMAT);
 
     public static String now() {
         return LocalDateTime.now().format(DATETIME_FORMATTER);
