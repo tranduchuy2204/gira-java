@@ -3,7 +3,7 @@ package cybersoft.javabackend.java18.gira.role.service;
 import cybersoft.javabackend.java18.gira.common.service.GenericService;
 import cybersoft.javabackend.java18.gira.role.dto.OperationDTO;
 import cybersoft.javabackend.java18.gira.role.model.Operation;
-import cybersoft.javabackend.java18.gira.role.model.OperationRepository;
+import cybersoft.javabackend.java18.gira.role.repository.OperationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;

@@ -24,11 +24,11 @@ public class Role extends BaseEntity {
     @Column(name = RoleEntity.Role.NAME, unique = true, length = 100)
     @Length(min = 5, max = 100, message = "Role name must have length between {min} and {max}")
     private String name;
-    
+
     @Column(name = RoleEntity.Role.CODE, unique = true)
     @Length(min = 3, max = 10, message = "Role code must have length between {min} and {max}")
     private String code;
-    
+
     @Column(name = RoleEntity.Role.DESCRIPTION)
     @NotBlank
     private String description;
@@ -48,12 +48,12 @@ public class Role extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "user_groups_id"))
     private Set<UserGroup> userGroups = new LinkedHashSet<>();
 
-    public void removeService(Operation operation){
+    public void removeService(Operation operation) {
         operations.remove(operation);
         operation.getRoles().remove(this);
     }
 
-    public Role addService(Operation operation){
+    public Role addService(Operation operation) {
         this.operations.add(operation);
         operation.getRoles().add(this);
         return this;
