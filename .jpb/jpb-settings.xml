@@ -8,16 +8,16 @@
       </database-info>
     </database-infos>
   </component>
-  <component name="JpaPluginProjectSettings">
+  <component name="JpaPluginProjectSettings" dtoSerializableType="2" dtoClassNamePostfix="DTO">
     <option name="entityNameTemplate" />
-    <option name="generateJpaOnGetter" value="true" />
     <option name="generateSerialVersionUID" value="true" />
     <option name="generateTypeOnEntity" value="true" />
-    <option name="useConstantsForEntities" value="true" />
     <option name="isLombokGetterAndSetter" value="true" />
     <option name="isLombokToString" value="true" />
     <option name="isLombokOnlyExplicitlyIncluded" value="true" />
-    <option name="isLombokRequiredArgsConstructor" value="true" />
+    <option name="isLombokBuilder" value="true" />
+    <option name="isLombokAllArgsConstructor" value="true" />
+    <option name="isLombokNoArgsConstructor" value="true" />
     <option name="useLazyOnToOneAssociations" value="true" />
     <option name="scaffoldingLanguage" />
     <option name="lastSelectedLanguage" value="Java" />

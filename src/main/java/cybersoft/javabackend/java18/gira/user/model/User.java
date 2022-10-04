@@ -1,36 +1,45 @@
 package cybersoft.javabackend.java18.gira.user.model;
 
 import cybersoft.javabackend.java18.gira.common.model.BaseEntity;
+import cybersoft.javabackend.java18.gira.role.model.UserGroup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table(name = UserEntity.User.TABLE_NAME)
-
+@NamedQueries({
+        @NamedQuery(name = "User.findByUsernameLikeIgnoreCase", query = "select u from User u where upper(u.username) like upper(:username)")
+})
 public class User extends BaseEntity {
 
-    @Column(name = UserEntity.User.USERNAME,
+    @Column(
+            name = UserEntity.User.USERNAME,
             nullable = false,
             unique = true,
             length = 100,
             updatable = false)
     private String username;
 
-    @Column(name = UserEntity.User.PASSWORD, nullable = false)
+    @Column(
+            name = UserEntity.User.PASSWORD,
+            nullable = false)
     private String password;
 
-    @Column(name = UserEntity.User.EMAIL,
+    @Column(
+            name = UserEntity.User.EMAIL,
             unique = true,
             nullable = false,
-            length = 100
-    )
+            length = 100)
     private String email;
 
     @Column(name = UserEntity.User.DISPLAY_NAME)
@@ -59,9 +68,12 @@ public class User extends BaseEntity {
     @Column(name = UserEntity.User.HOBBIES)
     private String hobbies;
 
+    @ManyToMany(mappedBy = "users")
+    private Set<UserGroup> userGroups = new LinkedHashSet<>();
+
 
     public enum Status {
-
+        ACTIVE, TEMPORARY_BLOCKED, PERMANENT_BLOCKED
     }
 
 }
