@@ -2,7 +2,6 @@ package cybersoft.javabackend.java18.gira.user.boundary;
 
 import cybersoft.javabackend.java18.gira.common.util.ResponseUtils;
 import cybersoft.javabackend.java18.gira.user.dto.UserDTO;
-import cybersoft.javabackend.java18.gira.user.model.User;
 import cybersoft.javabackend.java18.gira.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 public class UserRestResource {
     private final UserService userService;
 
@@ -30,7 +29,7 @@ public class UserRestResource {
     @PostMapping
     ResponseEntity<?> saveUser(@RequestBody @Valid UserDTO userDto) {
         return ResponseUtils.get(
-                userService.save(userDto, User.class, UserDTO.class),
+                userService.createUser(userDto),
                 HttpStatus.OK
         );
     }

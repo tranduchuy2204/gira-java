@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/user-groups")
+@RequestMapping("api/v1/user-groups")
 public class UserGroupRestResource {
     private final UserGroupService service;
 
@@ -29,7 +29,7 @@ public class UserGroupRestResource {
         );
     }
 
-    @GetMapping("/include-users")
+    @GetMapping("api/v1/include-users")
     public ResponseEntity<?> findAllUserGroupIncludedUsers() {
         return ResponseUtils.get(
                 service.findAllDtoIncludeUsers(),
@@ -45,7 +45,7 @@ public class UserGroupRestResource {
         );
     }
 
-    @PostMapping("{user-group-id}/add-users")
+    @PostMapping("api/v1{user-group-id}/add-users")
     public ResponseEntity<?> addUsers(
             @PathVariable("user-group-id") UUID userGroupId,
             @RequestBody List<UUID> ids

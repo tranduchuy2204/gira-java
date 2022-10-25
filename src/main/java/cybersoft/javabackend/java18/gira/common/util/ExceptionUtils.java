@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ExceptionUtils {
     public static final String DEFAULT_UNEXPECTED_MESSAGE = "Ops! Something wrong happens...";
 
-    public List<String> getErrors(ConstraintViolationException exception){
+    public List<String> getErrors(ConstraintViolationException exception) {
         return exception.getConstraintViolations()
                 .stream()
                 .map(ConstraintViolation::getMessage)
@@ -21,7 +21,7 @@ public class ExceptionUtils {
     }
 
     public static List<String> getErrors(RuntimeException exception) {
-        return List.of(DEFAULT_UNEXPECTED_MESSAGE);
+        return List.of(exception.getMessage());
     }
 
     public static List<String> getErrors(MethodArgumentNotValidException exception) {

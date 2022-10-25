@@ -13,37 +13,37 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("api/v1/roles")
 public class RoleRestResource {
     private final RoleService service;
-    
-    public RoleRestResource(RoleService roleService){
+
+    public RoleRestResource(RoleService roleService) {
         this.service = roleService;
     }
 
     @GetMapping
-    public Object findAll(){
+    public Object findAll() {
         return ResponseUtils.get(service.findAllDto(RoleDTO.class), HttpStatus.OK);
     }
-    
-    @GetMapping("/paging")
+
+    @GetMapping("paging")
     public Object findAllDtoPaging(@RequestParam("size") int size,
-                                   @RequestParam("index") int index){
+                                   @RequestParam("index") int index) {
         return ResponseUtils.get(
                 service.findAllDto(Pageable.ofSize(size).withPage(index), RoleDTO.class)
                 , HttpStatus.OK
         );
     }
-    
+
     @PostMapping
-    public Object save(@RequestBody @Valid RoleDTO roleDTO){
+    public Object save(@RequestBody @Valid RoleDTO roleDTO) {
         return ResponseUtils.get(service.save(roleDTO), HttpStatus.CREATED);
     }
 
     @PostMapping("{role-id}/add-operations")
     public ResponseEntity<?> addOperations(
             @RequestBody List<UUID> ids,
-            @PathVariable("role-id") UUID roleId){
+            @PathVariable("role-id") UUID roleId) {
         return ResponseUtils.get(
                 service.addOperations(roleId, ids)
                 , HttpStatus.OK
