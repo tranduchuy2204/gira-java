@@ -27,7 +27,6 @@ public class AuthorizationAspect {
     @Before("@annotation(giraOperation)")
     public void authorizeOperation(GiraOperation giraOperation) {
         log.info("Pointcut has been activated, operation = " + giraOperation.name());
-
         String username = getCurrentUser();
         log.info("user name: " + username);
         if (!isPermitted(username, giraOperation.name())) {

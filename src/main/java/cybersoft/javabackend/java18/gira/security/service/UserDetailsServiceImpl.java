@@ -27,5 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 user.getPassword(),
                 Collections.emptyList()
         );
+
     }
 }
